@@ -21,6 +21,7 @@ import 'package:artsideout_app/components/home/Sidebar.dart';
 import 'package:artsideout_app/components/activity/ActivityDetailWidget.dart';
 import 'package:artsideout_app/pages/activity/ActivityDetailPage.dart';
 import 'package:artsideout_app/components/common.dart';
+
 import 'package:artsideout_app/pages/art/MasterArtPage.dart';
 
 class MasterActivityPage extends StatefulWidget {
@@ -347,6 +348,7 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
               : Container(), 
         ]);
       }),
+      // TODO: add bottom nav bar
     );
   }
 }
