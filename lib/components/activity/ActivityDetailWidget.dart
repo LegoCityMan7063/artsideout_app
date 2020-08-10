@@ -1,3 +1,4 @@
+import 'package:artsideout_app/components/profile/ProfileDetailWidget.dart';
 import 'package:artsideout_app/pages/profile/ProfileDetailPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
 
   @override
   Widget build(BuildContext context) {
+    //variable; if profile page or activity page
     return Container(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -185,7 +187,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                 CupertinoPageRoute(
                                   builder: (BuildContext context) {
                                     return ProfileDetailPage(profile);
-                                  },
+                                  }, //islargescreen, return widget
                                 ),
                               );
                             })

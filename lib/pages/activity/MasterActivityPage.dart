@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:html';
 
 import 'package:artsideout_app/graphql/Profile.dart';
@@ -51,7 +52,7 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
         //print(result.data["activities"][i]);
         // result.data["activities"][i]["image"]["url"] ??
 
-        String imgUrlTest = (result.data["activities"][i]["image"] != null)
+        String imgUrl = (result.data["activities"][i]["image"] != null)
             ? result.data["activities"][i]["image"]["url"]
             : "https://via.placeholder.com/350";
 
@@ -61,6 +62,13 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
           for (var j = 0;
               j < result.data["activities"][i]["profile"].length;
               j++) {
+            Map<String, String> socialMap = new Map();
+            for (var key
+                in result.data["activities"][i]["profile"][j]["social"].keys) {
+              socialMap[key] =
+                  result.data["activities"][i]["profile"][j]["social"][key];
+            }
+            /*
             Map<String, String> socialMap =
                 (result.data["activities"][i]["profile"][j]["social"] != null)
                     ? {
@@ -76,14 +84,14 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
                         'pinterest': result.data["activities"][i]["profile"][j]
                                 ["social"]["pinterest"] ??
                             ""
-                      }
+                      } //REMOVE
                     : {
                         'facebook': "",
                         'instagram': "",
                         'website': "",
                         'pinterest': ""
                       };
-
+                    */
             profilesList.add(Profile(
                 result.data["activities"][i]["profile"][j]["name"],
                 result.data["activities"][i]["profile"][j]["desc"],
@@ -120,7 +128,7 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
                 result.data["activities"][i]["title"],
                 result.data["activities"][i]["desc"],
                 result.data["activities"][i]["zone"],
-                imgUrl: imgUrlTest,
+                imgUrl: imgUrl,
                 time: time,
                 location: location,
                 profiles: profilesList),
