@@ -192,49 +192,98 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
         }
         return Row(children: <Widget>[
           (isLargeScreen)
-              ? Expanded(
-                  flex: 4,
-                  child: Sidebar(),
-                )
-              : Container(),
+            ? Expanded( 
+                flex: 4, 
+                child: Sidebar(),
+              )
+            : Container(), 
           (isLargeScreen)
-              ? ActivityWebMenu(
-                  ListView.builder(
-                    // Let the ListView know how many items it needs to build.
-                    itemCount: listActivity.length,
-                    // Provide a builder function. This is where the magic happens.
-                    // Convert each item into a widget based on the type of item it is.
-                    itemBuilder: (context, index) {
-                      final item = listActivity[index];
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 50),
-                        curve: Curves.fastOutSlowIn,
-                        child: Material(
-                          color: Colors.transparent,
-                          child: ActivityCard(
-                            title: item.title,
-                            desc: item.desc,
-                            image: item.imgUrl,
-                            time: item.time,
-                            zone: item.zone,
-                            detailPageButton: InkWell(
-                              splashColor: Colors.grey[200].withOpacity(0.25),
-                              onTap: () {
-                                if (isLargeScreen) {
-                                  selectedValue = index;
-                                  setState(() {});
-                                } else {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) {
-                                        return ActivityDetailPage(item);
-                                      },
-                                    ),
-                                  );
-                                }
-                              },
+            ? ActivityWebMenu( 
+                ListView.builder(
+                        // Let the ListView know how many items it needs to build.
+                        itemCount: listActivity.length,
+                        // Provide a builder function. This is where the magic happens.
+                        // Convert each item into a widget based on the type of item it is.
+                        itemBuilder: (context, index) {
+                          final item = listActivity[index];
+                          return AnimatedContainer(
+                            duration: Duration(milliseconds: 50),
+                            curve: Curves.fastOutSlowIn,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: ActivityCard(
+                                title: item.title,
+                                desc: item.desc,
+                                image: item.imgUrl,
+                                time: item.time,
+                                zone: item.zone,
+                                detailPageButton: InkWell(
+                                  splashColor:
+                                      Colors.grey[200].withOpacity(0.25),
+                                  onTap: () {
+                                    if (isLargeScreen) {
+                                      selectedValue = index;
+                                      setState(() {});
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) {
+                                            return ActivityDetailPage(item);
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
                             ),
+                          );
+                        },
+                        physics: BouncingScrollPhysics(),
+                      ),
+            )
+          : Expanded(
+              flex: 71,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFCEAEB),
+                ),
+                child: Column(children: <Widget>[
+                  // Header(
+                  //   image: "assets/icons/activities.svg",
+                  //   textTop: "ACTIVITIES",
+                  //   textBottom: "",
+                  //   subtitle: "",
+                  // ),
+                  // Container(
+                  //   padding: const EdgeInsets.only(top: 60.0, left: 15.0, bottom: 20.0),
+                  //   color: Color(0xFFFCEAEB),
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Text(
+                  //     "Activities",
+                  //     style: TextStyle( 
+                  //       fontWeight: FontWeight.bold,  
+                  //       fontSize: 35.0,
+                  //       fontFamily: 'Roboto',
+                  //       color: asoPrimary,
+                  //     ),
+                  //   ),
+                  // ),
+                  Stack( 
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.only(top: 60.0, left: 15.0, bottom: 20.0),
+                        color: Color(0xFFFCEAEB),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Activities",
+                          style: TextStyle( 
+                            fontWeight: FontWeight.bold,  
+                            fontSize: 35.0,
+                            fontFamily: 'Roboto',
+                            color: asoPrimary,
                           ),
                         ),
                       );
@@ -284,6 +333,43 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
                                 fontSize: 35.0,
                                 fontFamily: 'Roboto',
                                 color: asoPrimary,
+                      child: ListView.builder(
+                        // Let the ListView know how many items it needs to build.
+                        itemCount: listActivity.length,
+                        // Provide a builder function. This is where the magic happens.
+                        // Convert each item into a widget based on the type of item it is.
+                        itemBuilder: (context, index) {
+                          final item = listActivity[index];
+                          return AnimatedContainer(
+                            duration: Duration(milliseconds: 50),
+                            curve: Curves.fastOutSlowIn,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: ActivityCard(
+                                title: item.title,
+                                desc: item.desc,
+                                image: item.imgUrl,
+                                time: item.time,
+                                zone: item.zone,
+                                detailPageButton: InkWell(
+                                  splashColor:
+                                      Colors.grey[200].withOpacity(0.25),
+                                  onTap: () {
+                                    if (isLargeScreen) {
+                                      selectedValue = index;
+                                      setState(() {});
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) {
+                                            return ActivityDetailPage(item);
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -357,6 +443,18 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
                   flex: 25,
                   child: ActivityDetailWidget(listActivity[selectedValue]))
               : Container(),
+                    ),
+                  ),
+                ]),
+              )),
+                        // If large screen, render activity detail page
+        (isLargeScreen && listActivity.length != 0)
+              ? Expanded(
+                flex: 25,
+                  child: ActivityDetailWidget(listActivity[selectedValue]
+                  )
+              )
+              : Container(), 
         ]);
       }),
     );
