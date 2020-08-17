@@ -304,6 +304,52 @@ class _MasterActivityPageState extends State<MasterActivityPage> {
                               fontFamily: 'Roboto',
                               color: asoPrimary,
                             ),
+                          );
+                        },
+                        physics: BouncingScrollPhysics(),
+                      ),
+            )
+          : Expanded(
+              flex: 71,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFCEAEB),
+                ),
+                child: Column(children: <Widget>[
+                  // Header(
+                  //   image: "assets/icons/activities.svg",
+                  //   textTop: "ACTIVITIES",
+                  //   textBottom: "",
+                  //   subtitle: "",
+                  // ),
+                  // Container(
+                  //   padding: const EdgeInsets.only(top: 60.0, left: 15.0, bottom: 20.0),
+                  //   color: Color(0xFFFCEAEB),
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Text(
+                  //     "Activities",
+                  //     style: TextStyle( 
+                  //       fontWeight: FontWeight.bold,  
+                  //       fontSize: 35.0,
+                  //       fontFamily: 'Roboto',
+                  //       color: asoPrimary,
+                  //     ),
+                  //   ),
+                  // ),
+                  Stack( 
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.only(top: 60.0, left: 15.0, bottom: 20.0),
+                        color: Color(0xFFFCEAEB),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Activities",
+                          style: TextStyle( 
+                            fontWeight: FontWeight.bold,  
+                            fontSize: 35.0,
+                            fontFamily: 'Roboto',
+                            color: asoPrimary,
                           ),
                         ),
                       ),  
